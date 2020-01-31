@@ -12,10 +12,18 @@
         <action
             android:id="@+id/action_homeFragment_to_simpleStaticPagerFragment"
             app:destination="@id/simpleStaticPagerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_dynamicPagerFragment"
+            app:destination="@id/dynamicPagerFragment" />
     </fragment>
     <fragment
         android:id="@+id/simpleStaticPagerFragment"
         android:name="io.github.lettucech.android.studies.viewpager.SimpleStaticPagerFragment"
         android:label="SimpleStaticPagerFragment"
-        tools:layout="@layout/fragment_simple_static_pager"/>
+        tools:layout="@layout/fragment_simple_static_pager" />
+    <fragment
+        android:id="@+id/dynamicPagerFragment"
+        android:name="io.github.lettucech.android.studies.viewpager.DynamicPagerFragment"
+        android:label="DynamicPagerFragment"
+        tools:layout="@layout/fragment_dynamic_pager" />
 </navigation>

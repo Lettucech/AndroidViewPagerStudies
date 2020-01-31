@@ -11,4 +11,6 @@
     <color name="rainbow_cyan">#6FD5B8</color>
     <color name="rainbow_blue">#6F85D5</color>
     <color name="rainbow_purple">#AE6FD5</color>
+
+    <color name="bottom_sheet_background">#C0A0A0A0</color>
 </resources>

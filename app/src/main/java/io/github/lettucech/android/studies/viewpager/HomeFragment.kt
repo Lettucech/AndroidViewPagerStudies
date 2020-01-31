@@ -25,5 +25,8 @@ class HomeFragment : Fragment() {
         button_simple_static_pager.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_simpleStaticPagerFragment)
         }
+        button_dynamic_pager.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_dynamicPagerFragment)
+        }
     }
 }
