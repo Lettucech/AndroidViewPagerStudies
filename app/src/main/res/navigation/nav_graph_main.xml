@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_homeFragment_to_dynamicPagerFragment"
             app:destination="@id/dynamicPagerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_tabLayoutFragment"
+            app:destination="@id/tabLayoutFragment" />
     </fragment>
     <fragment
         android:id="@+id/simpleStaticPagerFragment"
@@ -26,4 +29,9 @@
         android:name="io.github.lettucech.android.studies.viewpager.DynamicPagerFragment"
         android:label="DynamicPagerFragment"
         tools:layout="@layout/fragment_dynamic_pager" />
+    <fragment
+        android:id="@+id/tabLayoutFragment"
+        android:name="io.github.lettucech.android.studies.viewpager.TabLayoutFragment"
+        android:label="TabLayoutFragment"
+        tools:layout="@layout/fragment_tab_layout_integration"/>
 </navigation>

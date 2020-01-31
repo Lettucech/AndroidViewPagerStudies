@@ -1,6 +1,6 @@
 package io.github.lettucech.android.studies.viewpager
 
-import android.graphics.Color
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -10,13 +10,14 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.resources.TextAppearance
 import kotlinx.android.synthetic.main.fragment_simple_static_pager.*
 
 /**
  * Created by Brian Ho on 2020-01-17.
  */
-class SimpleStaticPagerFragment : Fragment() {
+class SimpleStaticPagerFragment(
+    @ViewPager2.Orientation var mOrientation: Int = ViewPager2.ORIENTATION_HORIZONTAL
+) : Fragment() {
 
     private val mPages = arrayOf(
         R.color.rainbow_red,
@@ -37,13 +38,17 @@ class SimpleStaticPagerFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewPager.orientation = mOrientation
         viewPager.adapter = object : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             override fun onCreateViewHolder(
                 parent: ViewGroup,
                 viewType: Int
             ): RecyclerView.ViewHolder {
                 val textView = TextView(parent.context).also {
-                    it.layoutParams = RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.MATCH_PARENT)
+                    it.layoutParams = RecyclerView.LayoutParams(
+                        RecyclerView.LayoutParams.MATCH_PARENT,
+                        RecyclerView.LayoutParams.MATCH_PARENT
+                    )
                     it.gravity = Gravity.CENTER
                     it.textSize = 24f
                 }
@@ -52,6 +57,7 @@ class SimpleStaticPagerFragment : Fragment() {
 
             override fun getItemCount(): Int = mPages.size
 
+            @SuppressLint("SetTextI18n")
             override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
                 (holder.itemView as TextView).apply {
                     text = "Page ${position + 1}"

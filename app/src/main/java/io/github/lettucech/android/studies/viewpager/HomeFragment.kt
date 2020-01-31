@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -27,6 +26,9 @@ class HomeFragment : Fragment() {
         }
         button_dynamic_pager.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_dynamicPagerFragment)
+        }
+        button_tab_layout_integration.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_tabLayoutFragment)
         }
     }
 }

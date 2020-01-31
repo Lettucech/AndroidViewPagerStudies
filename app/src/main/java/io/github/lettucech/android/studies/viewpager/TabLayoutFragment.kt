@@ -20,15 +20,7 @@ class TabLayoutFragment : Fragment() {
 
     private val mTabTitles = arrayOf("Horizontal Pager", "Vertical Pager")
 
-    private val mPagerAdapter = object : FragmentStateAdapter(this) {
-        override fun getItemCount(): Int {
-            return 2
-        }
-
-        override fun createFragment(position: Int): Fragment {
-            return SimpleStaticPagerFragment()
-        }
-    }
+    private lateinit var mPagerAdapter: FragmentStateAdapter
 
     private lateinit var mOnPageChangeCallback: ViewPager2.OnPageChangeCallback
 
@@ -37,9 +29,23 @@ class TabLayoutFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_tab_layout_integration, container, false)
+        return inflater.inflate(R.layout.fragment_tab_layout_integration, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewPager.isNestedScrollingEnabled = true
+        mPagerAdapter = object : FragmentStateAdapter(childFragmentManager, lifecycle) {
+            override fun getItemCount(): Int {
+                return 2
+            }
+
+            override fun createFragment(position: Int): Fragment {
+                return SimpleStaticPagerFragment(if (position == 0) ViewPager2.ORIENTATION_HORIZONTAL else ViewPager2.ORIENTATION_VERTICAL)
+            }
+        }
 
         viewPager.adapter = mPagerAdapter
+
         mOnPageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 for (i in 0 until mPagerAdapter.itemCount) {
@@ -79,8 +85,6 @@ class TabLayoutFragment : Fragment() {
                 }
             }
         }.attach()
-
-        return view
     }
 
     override fun onDestroyView() {
